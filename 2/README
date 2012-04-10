@@ -1,0 +1,3 @@
+Tag scanner script
+You can specify input file with cli param --file
+By default used file input.html
