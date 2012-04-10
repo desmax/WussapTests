@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#container {
+    width: 600px;
+    height: 175px;
+    background: gray;
+    padding: 10px;
+}
+#container h1 {
+    font-size: 26px;
+    padding: 0;
+    margin: 0;
+    color: blue;
+}
+#container label[for="color"] {
+    font-size: 22px;
+}
+#color {
+    line-height: 22px;
+}
+#color_appearance {
+    width: 75px;
+    height: 75px;
+    background: white;
+    margin-top: 20px;
+}
