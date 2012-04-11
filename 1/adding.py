@@ -1,10 +1,12 @@
-total = 0
-while True:
-    try:
-        var = raw_input()
-    except (EOFError, KeyboardInterrupt):
-        print 'Total:' + str(total)
-        break
-    else:
-        if len(var):
-            total += float(var)
+import sys
+try:
+    total = 0
+    input = sys.stdin.readlines()
+    for line in input:
+        if line.strip():
+            total += float(line)
+    print 'Total:' + str(total)
+except KeyboardInterrupt:
+    print 'KeyboardInterupt'
+except Exception:
+    print 'Something went wrong'
