@@ -1,0 +1,50 @@
+body {
+    background-color: #add8e6;
+}
+h1 {
+    padding-bottom: 0.75em;
+}
+#container {
+    width: 700px;
+    margin: 0 auto;
+    background-color: #bdd8e6;
+    padding: 20px;
+}
+#container > h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+section {
+    padding-bottom: 20px;
+}
+section section > h1 {
+    font-size: 24px;
+}
+
+#create_train form#create_train_form label {
+    display: block;
+    clear: both;
+}
+#create_train form#create_train_form label input {
+    display: block;
+    float: left;
+    margin-bottom: 5px;
+}
+#create_train form#create_train_form label p {
+    display: block;
+    margin-top: 5px;
+}
+#create_train form#create_train_form input[type="submit"] {
+    float: left;
+    margin-top: 10px;
+    clear: both;
+}
+section.train span.title {
+    font-weight: bold;
+    font-size: 1.1em;
+    display: block;
+    padding: 5px 0;
+}
+.error {
+    color: red;
+}

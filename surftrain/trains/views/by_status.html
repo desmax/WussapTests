@@ -1,0 +1,13 @@
+Trains with status: <b>{{status_name}}</b>
+{% if trains %}
+<ul>
+    {% for train in trains %}
+    <li><a href="{% url trains.views.view train.id %}">{{ train.description }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No trains are available.</p>
+{% endif %}
+<br/>
+<br/>
+<a href="{% url trains.views.index %}">Back to index</a>
