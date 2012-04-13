@@ -1,7 +1,6 @@
 window.onload = function() {
-    var result;
-
     document.getElementById('color-code').onkeyup = function() {
+        var result;
         var colorRegExp  = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$|^[a-zA-z]{3,}$)/i;
 
         if(!colorRegExp.test(this.value)) {
