@@ -1,6 +1,12 @@
-# Django settings for train project.
+# Django settings for surftrain project.
+import os
+import socket
 
-DEBUG = True
+if socket.gethostname() == 'productionserver.com':
+    DEBUG = False
+else:
+    DEBUG = True
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -11,12 +17,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE':   'django.db.backends.sqlite3',
+        'NAME':     'surftrain.db',
+        'USER':     '',
+        'PASSWORD': '',
+        'HOST':     '',
+        'PORT':     '',
     }
 }
 
@@ -45,6 +51,8 @@ USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
+
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__) + '/..' )
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -81,7 +89,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'pv5buv58=3+$!pxrg2)na&amp;i8&amp;52n32z5=5ern&amp;!i090!flq9j$'
+SECRET_KEY = '0em2k!kxk7r_bb5y&amp;65a6(a^-(#1thz#^b7#c7q2m2=7g$wa)='
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -100,15 +108,15 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'train.urls'
+ROOT_URLCONF = 'surftrain.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'train.wsgi.application'
+WSGI_APPLICATION = 'surftrain.wsgi.application'
+
+LAYOUT = 'trains/layouts/default.html'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    SITE_ROOT,
 )
 
 INSTALLED_APPS = (
@@ -118,10 +126,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'trains'
 )
 
 # A sample logging configuration. The only tangible logging
