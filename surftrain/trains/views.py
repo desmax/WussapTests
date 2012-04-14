@@ -6,6 +6,7 @@ from django.http import Http404
 from trains.models import Status, Train
 from django.conf import settings
 from django.template.context import RequestContext
+from datetime import datetime, timedelta
 
 def index(request):
     error_messages = None
@@ -16,16 +17,27 @@ def index(request):
                 departure = request.POST['departure'],
                 status = Status.objects.get(name = 'scheduled'))
             train.full_clean()
+            if train.departure < datetime.now():
+                exception = ValidationError('Departure should be in future')
+                raise exception
             train.save()
             return redirect(reverse('trains.views.view', kwargs = {
                 'train_id': train.pk
             }))
-        except Exception, error:
+        except ValidationError, error:
             error_messages = error.messages
+    tomorrow = datetime.now() + timedelta(days = 1)
+    tomorrow = tomorrow.date()
+
+    ongoing = Train.objects.filter(status = Status.objects.get(name = 'ongoing'),
+        departure__lt = tomorrow,
+        departure__gt = datetime.now()
+    )[:3]
+    scheduled = Train.objects.filter(status = Status.objects.get(name = 'scheduled'),
+        departure__gte = datetime.now())[:3]
 
     arrived = Train.objects.filter(status = Status.objects.get(name = 'arrived'))[:3]
-    ongoing = Train.objects.filter(status = Status.objects.get(name = 'ongoing'))[:3]
-    scheduled = Train.objects.filter(status = Status.objects.get(name = 'scheduled'))[:3]
+
     template = loader.get_template('trains/views/index.html')
 
     context_dictionary = {
