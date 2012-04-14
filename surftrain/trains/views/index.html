@@ -11,8 +11,8 @@
     {% else %}
     <p>No trains are available.</p>
     {% endif %}
+    <a class="section-link" href="{% url trains.views.status 'scheduled' %}">All trains with status scheduled</a>
 </section>
-
 <section id="ongoing">
     <h1>Ongoing trains</h1>
     {% if ongoing %}
@@ -26,6 +26,7 @@
     {% else %}
     <p>No trains are available.</p>
     {% endif %}
+    <a class="section-link" href="{% url trains.views.status 'ongoing' %}">All trains with status ongoing</a>
 </section>
 
 <section id="arrivals">
@@ -41,6 +42,7 @@
     {% else %}
     <p>No trains are available.</p>
     {% endif %}
+    <a class="section-link" href="{% url trains.views.status 'arrival' %}">All trains with status arrival</a>
 </section>
 
 {% include 'trains/views/_train_form.html' %}

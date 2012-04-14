@@ -26,6 +26,7 @@ def index(request):
             }))
         except ValidationError, error:
             error_messages = error.messages
+
     tomorrow = datetime.now() + timedelta(days = 1)
     tomorrow = tomorrow.date()
 
@@ -36,7 +37,10 @@ def index(request):
     scheduled = Train.objects.filter(status = Status.objects.get(name = 'scheduled'),
         departure__gte = datetime.now())[:3]
 
-    arrived = Train.objects.filter(status = Status.objects.get(name = 'arrived'))[:3]
+    arrived = Train.objects.filter(status = Status.objects.get(name = 'arrived'),
+        departure__gt = datetime.now(),
+        arrival__lte = datetime.now()
+    )[:3]
 
     template = loader.get_template('trains/views/index.html')
 
@@ -51,7 +55,7 @@ def index(request):
     context = RequestContext(request, context_dictionary)
     return render_layout(template.render(context))
 
-def by_status(request, status_name):
+def status(request, status_name):
     try:
         status = Status.objects.get(name = status_name)
         trains = Train.objects.filter(status = status.pk)
@@ -60,7 +64,7 @@ def by_status(request, status_name):
     except Train.DoesNotExist:
         raise Http404
 
-    template = loader.get_template('trains/views/by_status.html')
+    template = loader.get_template('trains/views/status.html')
     context = Context({
         'trains': trains,
         'status_name': status_name
