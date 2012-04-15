@@ -63,3 +63,12 @@ section ul li a {
     color: #8b0000;
 
 }
+.pagination {
+    margin: 10px 0;
+    font-size: 13px;
+    color: green;
+}
+.pagination a {
+    color: #006400;
+    font-weight: bold;
+}

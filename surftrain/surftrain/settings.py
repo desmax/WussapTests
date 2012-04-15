@@ -160,3 +160,5 @@ LOGGING = {
         },
     }
 }
+
+PER_PAGE = 2
