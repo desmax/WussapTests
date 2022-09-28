@@ -1,0 +1,26 @@
+<section id="create_train">
+    <h1>Schedule new train</h1>
+
+    {% if error_messages %}
+        {% for error_message in error_messages %}
+            <p class="error"><strong>{{ error_message }}</strong></p>
+        {% endfor %}
+    {% endif %}
+
+    <form name="create_train_form" id="create_train_form" action="{% url trains.views.index %}" method="post">
+        {% csrf_token %}
+        <label for="description">
+            <p>Description:</p>
+            <input id="description" type="text" value="" name="description" />
+        </label>
+        <label for="username">
+            <p>User:</p>
+            <input id="username" type="text" value="" name="username" />
+        </label>
+        <label for="departure">
+            <p>Departure time:</p>
+            <input id="departure" type="text" value="" name="departure" />
+        </label>
+        <input type="submit" value="Create" />
+    </form>
+</section>

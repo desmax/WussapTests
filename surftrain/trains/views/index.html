@@ -1,0 +1,48 @@
+<section id="departures">
+    <h1>Upcoming departures</h1>
+    {% if scheduled %}
+    <ul>
+        {% for train in scheduled %}
+        <li><a href="{% url trains.views.view train.id %}">{{ train.description }}</a>:
+            Created By <span>{{ train.username }}</span>,
+            departing at {{ train.departure }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No trains are available.</p>
+    {% endif %}
+    <a class="section-link" href="{% url trains.views.status 'scheduled' %}">All trains with status scheduled</a>
+</section>
+<section id="ongoing">
+    <h1>Ongoing trains</h1>
+    {% if ongoing %}
+    <ul>
+        {% for train in ongoing %}
+        <li><a href="{% url trains.views.view train.id %}">{{ train.description }}</a>:
+            Created By <span>{{ train.username }}</span>,
+            departed at {{ train.departure }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No trains are available.</p>
+    {% endif %}
+    <a class="section-link" href="{% url trains.views.status 'ongoing' %}">All trains with status ongoing</a>
+</section>
+
+<section id="arrivals">
+    <h1>Latest arrivals</h1>
+    {% if arrived %}
+    <ul>
+        {% for train in arrived %}
+        <li><a href="{% url trains.views.view train.id %}">{{ train.description }}</a>:
+            Created By <span>{{ train.username }}</span>,
+            arrived at {{ train.departure }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No trains are available.</p>
+    {% endif %}
+    <a class="section-link" href="{% url trains.views.status 'arrival' %}">All trains with status arrival</a>
+</section>
+
+{% include 'trains/views/_train_form.html' %}

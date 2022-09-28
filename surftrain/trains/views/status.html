@@ -1,0 +1,24 @@
+Trains with status: <b>{{status_name}}</b>
+{% if trains %}
+<ul>
+    {% for train in trains %}
+    <li><a href="{% url trains.views.view train.id %}">{{ train.description }}</a></li>
+    {% endfor %}
+</ul>
+<div class="pagination">
+    {% if trains.has_previous %}
+        <a href="?page={{ trains.previous_page_number }}">previous</a>
+    {% endif%}
+    <span class="current">
+        Page {{ trains.number }} of {{ trains.paginator.num_pages }}
+    </span>
+    {% if trains.has_next %}
+        <a href="?page={{ trains.next_page_number }}">next</a>
+    {% endif %}
+</div>
+{% else %}
+<p>No trains are available.</p>
+{% endif %}
+<br/>
+<br/>
+<a href="{% url trains.views.index %}">Back to index</a>

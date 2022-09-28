@@ -7,6 +7,7 @@
     height: 175px;
     background: gray;
     padding: 10px;
+    position: relative;
 }
 #container h1 {
     font-size: 26px;
@@ -14,15 +15,18 @@
     margin: 0;
     color: blue;
 }
-#container label[for="color"] {
-    font-size: 22px;
-}
-#color {
+#color-code {
     line-height: 22px;
 }
-#color_appearance {
+#color-appearance {
     width: 75px;
     height: 75px;
     background: white;
     margin-top: 20px;
+}
+#info {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    color: green;
 }

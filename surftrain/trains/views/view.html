@@ -1,0 +1,9 @@
+<section class="train">
+    <span class="title">Description:</span> <p>{{ train.description }}</p>
+    <span class="title">User:</span> <p>{{ train.username }}</p>
+    <span class="title">Status:</span> <p>{{ train.status }}</p>
+    <span class="title">Departure:</span> <p>{{ train.departure }}</p>
+    <span class="title">Arrival:</span> <p>{{ train.arrival }}</p>
+</section>
+
+<a href="{% url trains.views.index %}">Back to index</a>
